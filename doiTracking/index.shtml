@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!-- InstanceBegin template="../Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>PDS: Tracking Service</title>
+<!-- InstanceEndEditable -->
+
+<!--#include virtual="/include/includes.html" -->
+
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<!-- InstanceParam name="menu_section" type="text" value="tools" -->
+<!-- InstanceParam name="menu_item" type="text" value="tools_data_dictionary_lookup" -->
+<!-- InstanceParam name="left_sidebar" type="boolean" value="true" -->
+<!-- InstanceParam name="standard_sidebar" type="boolean" value="true" -->
+<!-- InstanceParam name="standard_page_content" type="boolean" value="true" -->
+<!-- InstanceParam name="custom_page_class" type="text" value="" -->
+
+<!--#include virtual="DoiTrackingImports.html" -->
+</head>
+
+<body class="sidebar  menu_tools menu_item_tools_data_dictionary_lookup ">
+  <!--[if IE]>
+  <div id="IE">
+  <![endif]-->
+
+  <!--#include virtual="/include/header.html" -->
+  <!--#include virtual="/include/main_menu.html" -->
+
+  <div id="submenu">
+    <!--#include virtual="/include/tools_menu.html" -->
+    <div class="clear">
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <!--#include virtual="/include/standard_sidebar.html" -->
+    <!-- InstanceBeginEditable name="leftSidebar" -->
+    <!-- InstanceEndEditable -->
+  </div>
+
+  <!-- Main content -->
+  <div id="content">
+    <div class="linkTitle">
+      <a href="../"><h4 class="titleLinkPast">Tracking Service&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent">Data Object Identifier</h1>
+    </div>
+    <div class="tw-bs">
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form class="form-inline">
+            <div class="form-group">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDoiModal">Add DOI</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="doiTable">
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addDoiModal" tabindex="-1" role="dialog" aria-labelledby="addDoiModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="innerClose" aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addDoiModalLabel">Add DOI</h4>
+            </div>
+            <div class="modal-body">
+              <div id="addDoiFormContainer">
+                <form id="addDoiForm">
+                  <div id="addDoiLogicalIdentifierFormGroup" class="form-group">
+                    <label for="addDoiLogicalIdentifierInput">Logical Identifier</label>
+                    <input type="text" class="form-control" id="addDoiLogicalIdentifierInput" name="LOGICAL_ID" placeholder="Logical Identifier"/>
+                    <span id="addDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="addDoiVersionFormGroup" class="form-group">
+                    <label for="addDoiVersionInput">Version</label>
+                    <input type="text" class="form-control" id="addDoiVersionInput" name="Version" placeholder="Version"/>
+                    <span id="addDoiVersionInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="addDoiDoiInputFormGroup" class="form-group">
+                    <label for="addDoiDoiInput">DOI</label>
+                    <input type="text" class="form-control" id="addDoiDoiInput" name="Doi" placeholder="DOI"/>
+                    <span id="addDoiDoiInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="addDoiUrlInputFormGroup" class="form-group">
+                    <label for="addDoiUrlInput">URL</label>
+                    <input type="url" class="form-control" id="addDoiUrlInput" name="URL" placeholder="URL"/>
+                    <span id="addDoiUrlInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="addDoiEmailInputFormGroup" class="form-group">
+                    <label for="addDoiEmailInput">Email</label>
+                    <input type="email" class="form-control" id="addDoiEmailInput" name="Email" placeholder="Email"/>
+                    <span id="addDoiEmailInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="addDoiCommentInputFormGroup" class="form-group">
+                    <label for="addDoiCommentInput">Comment</label>
+                    <input type="text" class="form-control" id="addDoiCommentInput" name="Comment" placeholder="Comment"/>
+                    <span id="addDoiCommentInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                </form>
+              </div>
+
+              <div id="addDoiFormCompleteMessage">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="addDoiFormButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="addDoiModalAddButtonDisabled" type="button" class="btn btn-primary" disabled>Add</button>
+                <button id="addDoiModalAddButton" type="button" class="btn btn-success hidden">Add</button>
+              </div>
+
+              <div id="addDoiLoadingIcon" class="hidden">
+                  <img src="images/ajax-loader.gif" alt="Loading"/>
+              </div>
+
+              <div id="addDoiFormCompleteButtons" class="hidden">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- update Modal -->
+      <div class="modal fade" id="updateDoiModal" tabindex="-1" role="dialog" aria-labelledby="updateDoiModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="innerClose" aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="updateDoiModalLabel">Update DOI</h4>
+            </div>
+            <div class="modal-body">
+              <div id="updateDoiFormContainer">
+                <form id="updateDoiForm">
+                  <div id="updateDoiLogicalIdentifierFormGroup" class="form-group">
+                    <label for="updateDoiLogicalIdentifierInput">Logical Identifier</label>
+                    <input type="text" class="form-control" id="updateDoiLogicalIdentifierInput" name="LOGICAL_ID" readonly="true"/>
+                    <span id="updateDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="updateDoiVersionFormGroup" class="form-group">
+                    <label for="updateDoiVersionInput">Version</label>
+                    <input type="text" class="form-control" id="updateDoiVersionInput" name="Version"  readonly="true"/>
+                    <span id="updateDoiVersionInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="updateDoiUrlInputFormGroup" class="form-group">
+                    <label for="updateDoiUrlInput">URL</label>
+                    <input type="url" class="form-control" id="updateDoiUrlInput" name="URL"/>
+                    <span id="updateDoiUrlInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="updateDoiEmailInputFormGroup" class="form-group">
+                    <label for="updateDoiEmailInput">Email</label>
+                    <input type="email" class="form-control" id="updateDoiEmailInput" name="Email"/>
+                    <span id="updateDoiEmailInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                  <div id="updateDoiCommentInputFormGroup" class="form-group">
+                    <label for="updateDoiCommentInput">Comment</label>
+                    <input type="text" class="form-control" id="updateDoiCommentInput" name="Comment"/>
+                    <span id="updateDoiCommentInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                  </div>
+                </form>
+              </div>
+
+              <div id="updateDoiFormCompleteMessage">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="updateDoiFormButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="updateDoiModalUpdateButtonDisabled" type="button" class="btn btn-primary" disabled>Update</button>
+                <button id="updateDoiModalUpdateButton" type="button" class="btn btn-success hidden">Update</button>
+              </div>
+
+              <div id="updateDoiLoadingIcon" class="hidden">
+                  <img src="images/ajax-loader.gif" alt="Loading" />
+              </div>
+
+              <div id="updateDoiFormCompleteButtons" class="hidden">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--End tw-bs -->
+  </div><!--End main content -->
+
+
+  <!--#include virtual="/include/footer.html" -->
+
+  <!--[if IE]>
+  </div>
+  <![endif]-->
+</body>
+<!-- InstanceEnd -->
+</html>

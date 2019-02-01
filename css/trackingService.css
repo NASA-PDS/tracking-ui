@@ -1,0 +1,125 @@
+#ddPager-header{
+	padding-bottom: 5px;
+}
+
+#ddPager li,
+.links li {
+	display: inline;
+}
+
+#ddPager{
+	padding:0;
+	list-style-type:none;
+}
+
+#ddToggleSearchingMethodSearch {cursor: pointer;}
+#ddToggleSearchingMethodMatch {cursor: pointer;}
+
+#radioOptionsTable tbody tr td{
+	padding-right: 20px;
+}
+
+.title{
+	text-align:center;
+	font-size: 16px;
+}
+
+.menuItem{
+		margin-right: 10px;
+		margin-left: 10px;
+}
+
+a.menuItemThumbnailLink{
+	 color: black;
+	 text-decoration: none !important;
+}
+
+.menuThumbnailContainer{
+	display:inline-flex;
+	flex-wrap: wrap;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+}
+
+.menuThumbnail{
+	width:300px;
+}
+
+.menuThumbnail:hover{
+	cursor:pointer;
+}
+
+.menuThumbnail:hover .menuItemImage{
+	color: #006699;
+	font-size: 150px;
+}
+
+.menuThumbnail:hover .menuItemCaption{
+	color: #006699;
+}
+
+h3.menuItemCaptionTitle{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+p.menuItemCaptionParagraph{
+	font-size: 12px;
+}
+
+.menuItemImage{
+	width:100%;
+	height: 175px;
+	font-size: 125px;
+
+	-webkit-transition: color 0.5s, font-size 0.5s;
+  -moz-transition: color 0.5s, font-size 0.5s;
+  -o-transition: color 0.5s, font-size 0.5s;
+  transition: color 0.5s, font-size 0.5s;
+}
+
+.menuItemImageItem{
+	position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.menuItemCaption{
+	-webkit-transition: color 0.5s, font-size 0.5s;
+  -moz-transition: color 0.5s, font-size 0.5s;
+  -o-transition: color 0.5s, font-size 0.5s;
+  transition: color 0.5s, font-size 0.5s;
+}
+
+.listTitle{
+	cursor: pointer;
+}
+
+.panel.panel-default.panelNoRadius{
+	border-radius: 0;
+}
+
+.form-control.selectNoRadius{
+	border-radius: 0;
+}
+
+/**Override SSI styles**/
+.formp{
+	max-width:none;
+}
+
+.tw-bs .clearfix:after, .tw-bs .dl-horizontal dd:after, .tw-bs .container:after, .tw-bs .container-fluid:after, .tw-bs .row:after, .tw-bs .form-horizontal .form-group:after, .tw-bs .btn-toolbar:after, .tw-bs .btn-group-vertical > .btn-group:after, .tw-bs .nav:after, .tw-bs .navbar:after, .tw-bs .navbar-header:after, .tw-bs .navbar-collapse:after, .tw-bs .pager:after, .tw-bs .panel-body:after, .tw-bs .modal-footer:after {
+	clear: none;
+}
+
+.tw-bs input[type="radio"], .tw-bs input[type="checkbox"] {
+	margin: 0 0 0;
+	margin-top: 1px \9;
+	line-height: normal;
+}
+
+.tw-bs .thumbnail {
+	border-radius: 0;
+}
