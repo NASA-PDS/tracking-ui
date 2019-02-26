@@ -198,7 +198,7 @@ function validateAddDoiLogicalIdentifier(){
 
 function validateAddDoiVersion(){
   var version = $("#addDoiVersionInput").val();
-  if(version.trim().length > 0 && version.trim().length < 255){
+  if(version.trim().length > 0 && isNumDotOnly(version) && version.trim().length < 255){
     setAddDoiVersionToValid();
     return true;
   }
@@ -312,8 +312,13 @@ function isAsciiOnly(str) {
   return true;
 }
 
+function isNumDotOnly(str) {
+  var isNumber = /^(\d+\.)*\d+$/.test(str);
+  return isNumber;
+}
 function isUrlValid(input){
-  var re = new RegExp('^(https?:\\/\\/)?'+ // protocol
+  //var re = new RegExp('^(https?:\\/\\/)?'+ // protocol
+   var re = new RegExp('^http(s?):\\/\\/(www\.)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path

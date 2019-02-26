@@ -44,7 +44,7 @@
   <!-- Main content -->
   <div id="content">
     <div class="linkTitle">
-      <a href="../"><h4 class="titleLinkPast">Tracking Service&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent">Data Object Identifier</h1>
+      <a href="../"><h4 class="titleLinkPast">Tracking Service&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent">Digital Object Identifier</h1>
     </div>
     <div class="tw-bs">
 
@@ -75,32 +75,32 @@
                   <div id="addDoiLogicalIdentifierFormGroup" class="form-group">
                     <label for="addDoiLogicalIdentifierInput">Logical Identifier</label>
                     <input type="text" class="form-control" id="addDoiLogicalIdentifierInput" name="LOGICAL_ID" placeholder="Logical Identifier"/>
-                    <span id="addDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">* Required.</span>
                   </div>
                   <div id="addDoiVersionFormGroup" class="form-group">
                     <label for="addDoiVersionInput">Version</label>
                     <input type="text" class="form-control" id="addDoiVersionInput" name="Version" placeholder="Version"/>
-                    <span id="addDoiVersionInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiVersionInputHelpBlock" class="help-block hidden">* Required.(number and dot only)</span>
                   </div>
                   <div id="addDoiDoiInputFormGroup" class="form-group">
                     <label for="addDoiDoiInput">DOI</label>
                     <input type="text" class="form-control" id="addDoiDoiInput" name="Doi" placeholder="DOI"/>
-                    <span id="addDoiDoiInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiDoiInputHelpBlock" class="help-block hidden">* Required.</span>
                   </div>
                   <div id="addDoiUrlInputFormGroup" class="form-group">
                     <label for="addDoiUrlInput">URL</label>
                     <input type="url" class="form-control" id="addDoiUrlInput" name="URL" placeholder="URL"/>
-                    <span id="addDoiUrlInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiUrlInputHelpBlock" class="help-block hidden">* Required.(http(s)://... ...)</span>
                   </div>
                   <div id="addDoiEmailInputFormGroup" class="form-group">
                     <label for="addDoiEmailInput">Email</label>
                     <input type="email" class="form-control" id="addDoiEmailInput" name="Email" placeholder="Email"/>
-                    <span id="addDoiEmailInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiEmailInputHelpBlock" class="help-block hidden">* Required.(you@example.com)</span>
                   </div>
                   <div id="addDoiCommentInputFormGroup" class="form-group">
                     <label for="addDoiCommentInput">Comment</label>
                     <input type="text" class="form-control" id="addDoiCommentInput" name="Comment" placeholder="Comment"/>
-                    <span id="addDoiCommentInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="addDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
                   </div>
                 </form>
               </div>
@@ -140,27 +140,27 @@
                   <div id="updateDoiLogicalIdentifierFormGroup" class="form-group">
                     <label for="updateDoiLogicalIdentifierInput">Logical Identifier</label>
                     <input type="text" class="form-control" id="updateDoiLogicalIdentifierInput" name="LOGICAL_ID" readonly="true"/>
-                    <span id="updateDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <!-- <span id="updateDoiLogicalIdentifierInputHelpBlock" class="help-block hidden">* Required.</span> -->
                   </div>
                   <div id="updateDoiVersionFormGroup" class="form-group">
                     <label for="updateDoiVersionInput">Version</label>
                     <input type="text" class="form-control" id="updateDoiVersionInput" name="Version"  readonly="true"/>
-                    <span id="updateDoiVersionInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                     <!-- <span id="updateDoiVersionInputHelpBlock" class="help-block hidden">* Required.(number and dot only)</span> -->
                   </div>
                   <div id="updateDoiUrlInputFormGroup" class="form-group">
                     <label for="updateDoiUrlInput">URL</label>
                     <input type="url" class="form-control" id="updateDoiUrlInput" name="URL"/>
-                    <span id="updateDoiUrlInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="updateDoiUrlInputHelpBlock" class="help-block hidden">* Required.(http(s)://... ...)</span>
                   </div>
                   <div id="updateDoiEmailInputFormGroup" class="form-group">
                     <label for="updateDoiEmailInput">Email</label>
                     <input type="email" class="form-control" id="updateDoiEmailInput" name="Email"/>
-                    <span id="updateDoiEmailInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="updateDoiEmailInputHelpBlock" class="help-block hidden">* Required.(you@example.com)</span>
                   </div>
                   <div id="updateDoiCommentInputFormGroup" class="form-group">
                     <label for="updateDoiCommentInput">Comment</label>
                     <input type="text" class="form-control" id="updateDoiCommentInput" name="Comment"/>
-                    <span id="updateDoiCommentInputHelpBlock" class="help-block hidden">The value is invalid.</span>
+                    <span id="updateDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
                   </div>
                 </form>
               </div>
