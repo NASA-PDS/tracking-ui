@@ -47,32 +47,214 @@
       <a href="../"><h4 class="titleLinkPast">Tracking Service&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent">Status Tracking</h1>
     </div>
     <div class="tw-bs">
-      <div class="panel panel-default panelNoRadius">
-        <div class="panel-body">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="instrumentSelect">Instruments:</label>
-              <select id="instrumentSelect" class="form-control selectNoRadius">
-                <option>All</option>
-              </select>
-            </div>
-            &nbsp;
-            <div class="form-group">
-              <label for="investigationSelect">Investigations:</label>
-              <select id="investigationSelect" class="form-control selectNoRadius">
-                <option>All</option>
-              </select>
-            </div>
-          </form>
+      <div id="searchDiv">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div id="prodSearch"><!--Ajax solr form begin-->
+                <div class="input-group">
+                  <label for="prodSearchInput">Search products</label>
+                  <input type="text" id="prodSearchInput" class="form-control" aria-label="...">
+                </div><!-- /input-group -->                
+            </div><!--End of ajax solr search form "search"-->
+          </div>
         </div>
-      </div>
-      <div id="trackingServiceTable">
+
+      </div><!--End Search Div-->
+      
+      <div id="productStatusTable">
       </div>
 
-      <div id="deliveryTable" class="hidden">
+      <div id="astatusTable" class="hidden">
+      </div>
+      <div id="cstatusTable" class="hidden">
+      </div>
+      <div id="nssdcaTable" class="hidden">
       </div>
 
-      <button class="btn btn-success hidden" style="border-radius:0;float:right;" id="showTrackingServiceButton">Return</button>
+      <button class="btn btn-success hidden" style="border-radius:0;float:right;" id="showProductStatusButton">Return</button>
+      
+      <!-- Add archive status Modal -->
+      <div class="modal fade" id="addAStatusModal" tabindex="-1" role="dialog" aria-labelledby="addAStatusModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="innerClose" aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addAStatusModalLabel">Add Archive Status</h4>
+            </div>
+            <div class="modal-body">
+              <div id="addAStatusFormContainer">
+                <form id="addAStatusForm">
+                  <div id="addAStatusLogicalIdentifierFormGroup" class="form-group">
+                    <label for="addAStatusLogicalIdentifierInput">Logical Identifier</label>
+                    <input type="text" class="form-control" id="addAStatusLogicalIdentifierInput" name="LogicalIdentifier" readonly="true"/>
+                    <!-- <span id="addAStatusLogicalIdentifierInputHelpBlock" class="help-block hidden">* Required.</span> -->
+                  </div>
+                  <div id="addAStatusVersionFormGroup" class="form-group">
+                    <label for="addAStatusVersionInput">Version</label>
+                    <input type="text" class="form-control" id="addAStatusVersionInput" name="Version"  readonly="true"/>
+                     <!-- <span id="addAStatusVersionInputHelpBlock" class="help-block hidden">* Required.(number and dot only)</span> -->
+                  </div>
+                  <div id="addAStatusStatusInputFormGroup" class="form-group">
+                    <label for="addAStatusStatusInput">Status</label>
+                    <input type="text" class="form-control" id="addAStatusStatusInput" name="Status"/>
+                    <span id="addAStatusStatusInputHelpBlock" class="help-block hidden">* Required.(it can have no more than 255 characters.)</span>
+                  </div>
+                  <div id="addAStatusEmailInputFormGroup" class="form-group">
+                    <label for="addAStatusEmailInput">Email</label>
+                    <input type="email" class="form-control" id="addAStatusEmailInput" name="Email"/>
+                    <span id="addAStatusEmailInputHelpBlock" class="help-block hidden">* Required.(you@example.com)</span>
+                  </div>
+                  <div id="addAStatusCommentInputFormGroup" class="form-group">
+                    <label for="addAStatusCommentInput">Comment</label>
+                    <input type="text" class="form-control" id="addAStatusCommentInput" name="Comment"/>
+                    <span id="addAStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                  </div>
+                </form>
+              </div>
+
+              <div id="addAStatusFormCompleteMessage">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="addAStatusFormButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="addAStatusModalAddButtonDisabled" type="button" class="btn btn-primary" disabled>Add</button>
+                <button id="addAStatusModalAddButton" type="button" class="btn btn-success hidden">Add</button>
+              </div>
+
+              <div id="addAStatusLoadingIcon" class="hidden">
+                  <img src="images/ajax-loader.gif" alt="Loading" />
+              </div>
+
+              <div id="addAStatusFormCompleteButtons" class="hidden">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End archive status Modal -->
+      
+      <!-- Add Certification status Modal -->
+      <div class="modal fade" id="addCStatusModal" tabindex="-1" role="dialog" aria-labelledby="addCStatusModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="innerClose" aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addCStatusModalLabel">Add Certification Status</h4>
+            </div>
+            <div class="modal-body">
+              <div id="addCStatusFormContainer">
+                <form id="addCStatusForm">
+                  <div id="addCStatusLogicalIdentifierFormGroup" class="form-group">
+                    <label for="addCStatusLogicalIdentifierInput">Logical Identifier</label>
+                    <input type="text" class="form-control" id="addCStatusLogicalIdentifierInput" name="LogicalIdentifier" readonly="true"/>
+                    <!-- <span id="addCStatusLogicalIdentifierInputHelpBlock" class="help-block hidden">* Required.</span> -->
+                  </div>
+                  <div id="addCStatusVersionFormGroup" class="form-group">
+                    <label for="addCStatusVersionInput">Version</label>
+                    <input type="text" class="form-control" id="addCStatusVersionInput" name="Version"  readonly="true"/>
+                     <!-- <span id="addCStatusVersionInputHelpBlock" class="help-block hidden">* Required.(number and dot only)</span> -->
+                  </div>
+                  <div id="addCStatusStatusInputFormGroup" class="form-group">
+                    <label for="addCStatusStatusInput">Status</label>
+                    <input type="text" class="form-control" id="addCStatusStatusInput" name="Status"/>
+                    <span id="addCStatusStatusInputHelpBlock" class="help-block hidden">* Required.(it can have no more than 255 characters.)</span>
+                  </div>
+                  <div id="addCStatusEmailInputFormGroup" class="form-group">
+                    <label for="addCStatusEmailInput">Email</label>
+                    <input type="email" class="form-control" id="addCStatusEmailInput" name="Email"/>
+                    <span id="addCStatusEmailInputHelpBlock" class="help-block hidden">* Required.(you@example.com)</span>
+                  </div>
+                  <div id="addCStatusCommentInputFormGroup" class="form-group">
+                    <label for="addCStatusCommentInput">Comment</label>
+                    <input type="text" class="form-control" id="addCStatusCommentInput" name="Comment"/>
+                    <span id="addCStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                  </div>
+                </form>
+              </div>
+
+              <div id="addCStatusFormCompleteMessage">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="addCStatusFormButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="addCStatusModalAddButtonDisabled" type="button" class="btn btn-primary" disabled>Add</button>
+                <button id="addCStatusModalAddButton" type="button" class="btn btn-success hidden">Add</button>
+              </div>
+
+              <div id="addCStatusLoadingIcon" class="hidden">
+                  <img src="images/ajax-loader.gif" alt="Loading" />
+              </div>
+
+              <div id="addCStatusFormCompleteButtons" class="hidden">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Certification status Modal -->
+      
+      <!-- Add NSSDCA Modal -->
+      <div class="modal fade" id="addNssdcaModal" tabindex="-1" role="dialog" aria-labelledby="addNssdcaModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="innerClose" aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="addNssdcaModalLabel">Add NSSDCA</h4>
+            </div>
+            <div class="modal-body">
+              <div id="addNssdcaFormContainer">
+                <form id="addNssdcaForm">
+                  <div id="addNssdcaLogicalIdentifierFormGroup" class="form-group">
+                    <label for="addNssdcaLogicalIdentifierInput">Logical Identifier</label>
+                    <input type="text" class="form-control" id="addNssdcaLogicalIdentifierInput" name="LogicalIdentifier" readonly="true"/>
+                    <!-- <span id="addNssdcaLogicalIdentifierInputHelpBlock" class="help-block hidden">* Required.</span> -->
+                  </div>
+                  <div id="addNssdcaVersionFormGroup" class="form-group">
+                    <label for="addNssdcaVersionInput">Version</label>
+                    <input type="text" class="form-control" id="addNssdcaVersionInput" name="Version"  readonly="true"/>
+                     <!-- <span id="addNssdcaVersionInputHelpBlock" class="help-block hidden">* Required.(number and dot only)</span> -->
+                  </div>
+                  <div id="addNssdcaIdentifierInputFormGroup" class="form-group">
+                    <label for="addNssdcaIdentifierInput">NSSDCA</label>
+                    <input type="text" class="form-control" id="addNssdcaIdentifierInput" name="NssdcaIdentifier"/>
+                    <span id="addNssdcaIdentifierInputHelpBlock" class="help-block hidden">* Required.(it can have no more than 255 characters.)</span>
+                  </div>
+                  <div id="addNssdcaEmailInputFormGroup" class="form-group">
+                    <label for="addNssdcaEmailInput">Email</label>
+                    <input type="email" class="form-control" id="addNssdcaEmailInput" name="Email"/>
+                    <span id="addNssdcaEmailInputHelpBlock" class="help-block hidden">* Required.(you@example.com)</span>
+                  </div>
+                  <div id="addNssdcaCommentInputFormGroup" class="form-group">
+                    <label for="addNssdcaCommentInput">Comment</label>
+                    <input type="text" class="form-control" id="addNssdcaCommentInput" name="Comment"/>
+                    <span id="addNssdcaCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                  </div>
+                </form>
+              </div>
+
+              <div id="addNssdcaFormCompleteMessage">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="addNssdcaFormButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="addNssdcaModalAddButtonDisabled" type="button" class="btn btn-primary" disabled>Add</button>
+                <button id="addNssdcaModalAddButton" type="button" class="btn btn-success hidden">Add</button>
+              </div>
+
+              <div id="addNssdcaLoadingIcon" class="hidden">
+                  <img src="images/ajax-loader.gif" alt="Loading" />
+              </div>
+
+              <div id="addNssdcaFormCompleteButtons" class="hidden">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End NSSDCA Modal -->
     </div><!--End tw-bs -->
   </div><!--End main content -->
 
