@@ -107,7 +107,7 @@
                   <div id="addAStatusCommentInputFormGroup" class="form-group">
                     <label for="addAStatusCommentInput">Comment</label>
                     <input type="text" class="form-control" id="addAStatusCommentInput" name="Comment"/>
-                    <span id="addAStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                    <span id="addAStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 1024 characters.)</span>
                   </div>
                 </form>
               </div>
@@ -168,7 +168,7 @@
                   <div id="addCStatusCommentInputFormGroup" class="form-group">
                     <label for="addCStatusCommentInput">Comment</label>
                     <input type="text" class="form-control" id="addCStatusCommentInput" name="Comment"/>
-                    <span id="addCStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                    <span id="addCStatusCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 1024 characters.)</span>
                   </div>
                 </form>
               </div>
@@ -229,7 +229,7 @@
                   <div id="addNssdcaCommentInputFormGroup" class="form-group">
                     <label for="addNssdcaCommentInput">Comment</label>
                     <input type="text" class="form-control" id="addNssdcaCommentInput" name="Comment"/>
-                    <span id="addNssdcaCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                    <span id="addNssdcaCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 1024 characters.)</span>
                   </div>
                 </form>
               </div>

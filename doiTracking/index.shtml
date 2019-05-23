@@ -100,7 +100,7 @@
                   <div id="addDoiCommentInputFormGroup" class="form-group">
                     <label for="addDoiCommentInput">Comment</label>
                     <input type="text" class="form-control" id="addDoiCommentInput" name="Comment" placeholder="Comment"/>
-                    <span id="addDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                    <span id="addDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 1024 characters.)</span>
                   </div>
                 </form>
               </div>
@@ -160,7 +160,7 @@
                   <div id="updateDoiCommentInputFormGroup" class="form-group">
                     <label for="updateDoiCommentInput">Comment</label>
                     <input type="text" class="form-control" id="updateDoiCommentInput" name="Comment"/>
-                    <span id="updateDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 255 characters.)</span>
+                    <span id="updateDoiCommentInputHelpBlock" class="help-block hidden">Not required.(it can have no more than 1024 characters.)</span>
                   </div>
                 </form>
               </div>

@@ -270,7 +270,7 @@ function validateUpdateDoiEmail(){
 
 function validateAddDoiComment(){
   var comment = $('#addDoiCommentInput').val();
-  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 255)){
+  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 1024)){
     setAddDoiCommentToValid();
     return true;
   }
@@ -282,7 +282,7 @@ function validateAddDoiComment(){
 
 function validateUpdateDoiComment(){
   var comment = $('#updateDoiCommentInput').val();
-  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 255)){
+  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 1024)){
     setUpdateDoiCommentToValid();
     return true;
   }

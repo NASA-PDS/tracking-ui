@@ -1,9 +1,3 @@
-var Manager;
-var investigationFilters = [];
-var instrumentFilters = [];
-var lastInstrument = "all";
-var lastInvestigation = "all";
-
 var productsUrl = "https://" + TrackingConts.server_host + "/services/tracking/json/products";
 var archivestatusUrl = "https://" + TrackingConts.server_host + "/services/tracking/json/archivestatus";
 var certificationstatusUrl = "https://" + TrackingConts.server_host + "/services/tracking/json/certificationstatus";
@@ -28,7 +22,7 @@ var addNssdcaUrl = "https://" + TrackingConts.server_host + "/services/tracking/
         	setUpProductsList();
         });
 
-       $( "#productStatusTable" ).on("click", ".listarchvie", function() {
+       $( "#productStatusTable" ).on("click", ".listarchive", function() {
             var logicalIdentifier = $(this).data("id");
             var dataVersion = $(this).data("ver");
             //console.log("id: ", logicalIdentifier);
@@ -60,7 +54,7 @@ function setUpProductsList(){
 
   $.ajax({
       type: "GET",
-      url: productsUrl + "/prodwithstatus",
+      url: productsUrl + "/prod-with-status",
       datatype: "json",
       success: function(data) {
         displayProductList(data);
@@ -87,20 +81,20 @@ function displayProductList(json){
             var id = json[i].logical_identifier;
             var ver = json[i].version_id;
             
-            var archvie = json[i].astatus;
+            var archive = json[i].astatus;
             var certification = json[i].cstatus;
             var nssdca = json[i].nssdca;
             
             
-            var archvieLink = "<td><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#addAStatusModal\"" 
+            var archiveLink = "<td><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#addAStatusModal\"" 
                 + " data-id=\"" + id + "\""
                 + " data-ver=\"" + ver + "\""
                 + ">Add</button></td>";
-            if (archvie != null && archvie.length > 0){
-	            archvieLink = "<td><a class=\"listarchvie\""
+            if (archive != null && archive.length > 0){
+	            archiveLink = "<td><a class=\"listarchive\""
 	            	+ " data-id=\"" + id + "\""
 	            	+ " data-ver=\"" + ver + "\">"
-	            	+ archvie + "</a></td>";
+	            	+ archive + "</a></td>";
 	        }
             var certificationLink = "<td><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#addCStatusModal\"" 
                 + " data-id=\"" + id + "\""
@@ -125,7 +119,7 @@ function displayProductList(json){
             
             var row = $('<tr>' +
             			'<td><b>' + title + '</b><br/>' + id + '::' + ver + '</td>' +
-            			archvieLink +
+            			archiveLink +
             			certificationLink +
             			nssdcaLink +
                         '</tr>');
@@ -228,7 +222,7 @@ function showAStatusPage(id, ver){
         url: archivestatusUrl + "/" + id + "/" + ver + "/false",
         datatype: "json",
         success: function(data) {
-        	displayArchvieList(data, id, ver);
+        	displayArchiveList(data, id, ver);
         }
     });
 }
@@ -287,7 +281,7 @@ function validateAddAStatusStatus(){
 
 function validateAddAStatusComment(){
   var comment = $('#addAStatusCommentInput').val();
-  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 255)){
+  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 1024)){
     setAddAStatusCommentToValid();
     return true;
   }
@@ -415,7 +409,7 @@ function showAddAStatusCompletedMessage(){
   $("#addAStatusFormCompleteMessage").html("Archive Status has been added.");
 }
 
-function displayArchvieList(json, id, ver){
+function displayArchiveList(json, id, ver){
   $("#astatusTable").empty();
   showAStatusTable();
   
@@ -432,7 +426,7 @@ function displayArchvieList(json, id, ver){
     		  			'<button id="showAStatusModalButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#addAStatusModal"' + 
     		  			' data-id="' + idJson + '"' + 
     		  			' data-ver="' + verJson + '"> Add </button></th></tr></thead>');
-      var subTitle = $('<thead><tr><th colspan="4">Archvie Status<br>' + idJson + '::'+ verJson + '</th></tr></thead>');
+      var subTitle = $('<thead><tr><th colspan="4">Archive Status<br>' + idJson + '::'+ verJson + '</th></tr></thead>');
       var thead = $('<thead><tr>' +
     		  '<th>Status</th>' + 
     		  '<th>Status Date Time</th>' + 
@@ -461,14 +455,15 @@ function displayArchvieList(json, id, ver){
     }   
   }
   else{
-  	  var tableNonStatus = $('<table></table>').addClass('table table-hover');
-      var subTitle = $('<thead><tr><th colspan="4">Archvie Status<br>' + id + '::'+ ver + '</th></tr></thead>')
+  	  /*var tableNonStatus = $('<table></table>').addClass('table table-hover');
+      var subTitle = $('<thead><tr><th colspan="4">Archive Status<br>' + id + '::'+ ver + '</th></tr></thead>')
       var tbody = $('<tbody><tr><td>Cancelled Add Archive Status</td></tr></tbody');
 
       tableNonStatus.append(subTitle);
       tableNonStatus.append(tbody);
       
-      $('#astatusTable').append(tableNonStatus);
+      $('#astatusTable').append(tableNonStatus);*/
+	  setUpProductsList();
   }
 }
 
@@ -618,7 +613,7 @@ function validateAddCStatusStatus(){
 
 function validateAddCStatusComment(){
   var comment = $('#addCStatusCommentInput').val();
-  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 255)){
+  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 1024)){
     setAddCStatusCommentToValid();
     return true;
   }
@@ -790,7 +785,7 @@ function displayCertificationList(json, id, ver){
     }   
   }
   else{
-  	var tableNonStatus = $('<table></table>').addClass('table table-hover');
+  	/*var tableNonStatus = $('<table></table>').addClass('table table-hover');
       var subTitle = $('<thead><tr><th colspan="4">Certification Status<br>' + id + '::'+ ver + '</th></tr></thead>')
 
       var tbody = $('<tbody><tr><td>Cancelled Add Certification Status</tr></td></tbody');
@@ -798,7 +793,8 @@ function displayCertificationList(json, id, ver){
       tableNonStatus.append(subTitle);
       tableNonStatus.append(tbody);
       
-      $('#cstatusTable').append(tableNonStatus);
+      $('#cstatusTable').append(tableNonStatus);*/
+	  setUpProductsList();
   }
 }
 
@@ -947,7 +943,7 @@ function validateAddNssdca(){
 
 function validateAddNssdcaComment(){
   var comment = $('#addNssdcaCommentInput').val();
-  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 255)){
+  if(comment.trim().length == 0 || (comment.trim().length > 0 && comment.trim().length < 1024)){
     setAddNssdcaCommentToValid();
     return true;
   }
@@ -1115,7 +1111,7 @@ function displayNssdcaList(json, id, ver){
     }   
   }
   else{
-  	var tableNonStatus = $('<table></table>').addClass('table table-hover');
+  	/*var tableNonStatus = $('<table></table>').addClass('table table-hover');
       var subTitle = $('<thead><tr><th colspan="4">NSSDCA<br>' + id + '::'+ ver + '</th></tr></thead>')
 
       var tbody = $('<tbody><tr><td>Cancelled Add NSSDCA</td></tr></tbody');
@@ -1123,7 +1119,8 @@ function displayNssdcaList(json, id, ver){
       tableNonStatus.append(subTitle);
       tableNonStatus.append(tbody);
       
-      $('#nssdcaTable').append(tableNonStatus);
+      $('#nssdcaTable').append(tableNonStatus);*/
+	  setUpProductsList();
   }
 }
 
@@ -1148,7 +1145,7 @@ function addProductsSeachListener(){
 function  getProdResults(){
     var text = $(this).val().toLowerCase();
     $("#productStatusTable tr").filter(function() {
-         $(this).toggle($(this).text().toLowerCase().indexOf(text) > -1)
+         $(this).toggle($(this).children('td').first().text().toLowerCase().indexOf(text) > -1)
      });
 }
 
