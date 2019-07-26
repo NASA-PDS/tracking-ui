@@ -1,9 +1,11 @@
 (function ($) {
+    console.log("func");
 
 AjaxSolr.DetailLinkSearchWidget = AjaxSolr.AbstractTextWidget.extend({
     detailLinkId: 0,
 
     init: function () {
+        console.log("init");
         var self = this;
 
         $(document).on('click', 'a.detailLink', function () {
@@ -21,7 +23,6 @@ AjaxSolr.DetailLinkSearchWidget = AjaxSolr.AbstractTextWidget.extend({
             self.showSearchDiv();
             return false;
         });
-
     },
 
     setDetailDiv: function(id){
@@ -281,7 +282,7 @@ AjaxSolr.DetailLinkSearchWidget = AjaxSolr.AbstractTextWidget.extend({
                     $("#detailLink" + self.detailLinkId).parent().parent().effect("highlight", {}, 600);
                 });
         }, 300);
-    },
+    }
 
 });
 

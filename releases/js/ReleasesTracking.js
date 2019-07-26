@@ -13,6 +13,10 @@ var releasesUrl = "https://" + TrackingConts.server_host
 var addReleasesUrl = "https://" + TrackingConts.server_host
 		+ "/services/tracking/json/releases/add";
 
+var logicalIdentifier = "";
+var dataVersion = "";
+var dataTitle = "";
+
 (function($) {
 	$(document).ready(function() {
 		addAddReleasesModalListener();
@@ -22,16 +26,16 @@ var addReleasesUrl = "https://" + TrackingConts.server_host
 		setUpProductsList();
 
 		// Return button
-		$("#showProductReleasesButton").on("click", function() {
+		$(document).on('click', '.showProductReleasesButton', function(){
 			setUpProductsList();
 		});
 
 		$("#productReleasesTable").on("click", ".listreleases", function() {
-			var logicalIdentifier = $(this).data("id");
-			var dataVersion = $(this).data("ver");
-			// console.log("id: ", logicalIdentifier);
-			// console.log("ver: ", dataVersion);
-			showReleasesPage(logicalIdentifier, dataVersion)
+			logicalIdentifier = $(this).data("id");
+			dataVersion = $(this).data("ver");
+			dataTitle = $(this).text();
+
+			showReleasesPage()
 		});
 
 		$.datetimepicker.setLocale('en');
@@ -77,12 +81,11 @@ function displayProductList(json) {
 
 	if (json) {
 		if (json.length > 0) {
-			console.log("Number of Products JSON:", json.length);
+			var tableTitle = $('<h4>Products With Releases</h4>');
 			var table = $('<table></table>').addClass('table table-hover');
 			var thead = $('<thead><tr><th>Title<br/><span style="font-weight:normal">Logical Identifier::version</span</th><th>Release Name</th><th>Investigation</th><th>Instrument</th><th>Node</th></tr></thead>');
 			var tbody = $('<tbody></tbody');
 			for (i = 0; i < json.length; i++) {
-				//console.log("JSON: ", json[i]);
 
 				var title = json[i].title;
 				var id = json[i].logical_identifier;
@@ -92,13 +95,13 @@ function displayProductList(json) {
 				var date = json[i].releasesDate;
 				var description = json[i].releasesDescription;
 
-				var releasesLink = "<td><button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#addReleasesModal\""
+				var releasesLink = "<td><button type=\"button\" class=\"btn btn-link addReleaseLink\" data-toggle=\"modal\" data-target=\"#addReleasesModal\""
 						+ " data-id=\""
 						+ id
 						+ "\""
 						+ " data-ver=\""
 						+ ver
-						+ "\"" + ">Add</button></td>";
+						+ "\"" + "><i class=\"fas fa-plus\"></i> Add</button></td>";
 				if (name != null && name.length > 0) {
 					releasesLink = "<td><a class=\"listreleases\""
 							+ " data-id=\"" + id + "\"" + " data-ver=\"" + ver
@@ -116,6 +119,7 @@ function displayProductList(json) {
 			table.append(thead);
 			table.append(tbody);
 
+			$('#productReleasesTable').append(tableTitle);
 			$('#productReleasesTable').append(table);
 		}
 	}
@@ -127,17 +131,17 @@ function showProductReleasesTable() {
 	$("#productReleasesTable").removeClass("hidden");
 
 	$("#releasesTable").addClass("hidden");
-	$("#showProductReleasesButton").addClass("hidden");
+	$(".showProductReleasesButton").addClass("hidden");
 }
 function addAddReleasesModalListener() {
 
 	$('#addReleasesModal').on('show.bs.modal', function(event) {
 
 		// set values of id and ver to the form
-		var id = $(event.relatedTarget).data('id');
-		var ver = $(event.relatedTarget).data('ver');
-		$(this).find('#addReleasesLogicalIdentifierInput').val(id);
-		$(this).find('#addReleasesVersionInput').val(ver);
+		//var id = $(event.relatedTarget).data('id');
+		//var ver = $(event.relatedTarget).data('ver');
+		//$(this).find('#addReleasesLogicalIdentifierInput').val(id);
+		//$(this).find('#addReleasesVersionInput').val(ver);
 
 		// Validation Listener
 		createAddReleasesModalValidationListener();
@@ -146,11 +150,12 @@ function addAddReleasesModalListener() {
 	// Clear AddReleasesModal on Close
 	$(document).on('hide.bs.modal', '#addReleasesModal', function() {
 		// back to Releases page, need id and ver
-		var logicalIdentifier = $('#addReleasesLogicalIdentifierInput').val();
-		var version = $("#addReleasesVersionInput").val();
+		//var logicalIdentifier = $('#addReleasesLogicalIdentifierInput').val();
+		//var version = $("#addReleasesVersionInput").val();
+
 		// Clear Modal and show the releases page
 		clearAddReleasesModal();
-		showReleasesPage(logicalIdentifier, version);
+		showReleasesPage();
 	});
 
 	$("#addReleasesModalAddButton").on("click", function() {
@@ -211,14 +216,14 @@ function clearAddReleasesModal() {
 	$("#addReleasesLoadingIcon").addClass("hidden");
 }
 
-function showReleasesPage(id, ver) {
+function showReleasesPage() {
 	$("#releasesTable").empty();
 	$.ajax({
 		type : "GET",
-		url : releasesUrl + "/" + id + "/" + ver + "/false",
+		url : releasesUrl + "/" + logicalIdentifier + "/" + dataVersion + "/false",
 		datatype : "json",
 		success : function(data) {
-			displayReleasesList(data, id, ver);
+			displayReleasesList(data);
 		}
 	});
 }
@@ -508,7 +513,7 @@ function showAddReleasesCompletedMessage() {
 	$("#addReleasesFormCompleteMessage").html("Releases has been added.");
 }
 
-function displayReleasesList(json, id, ver) {
+function displayReleasesList(json) {
 	$("#releasesTable").empty();
 	showReleasesTable();
 	
@@ -518,22 +523,30 @@ function displayReleasesList(json, id, ver) {
 			var idJson = json[0].logical_identifier;
 			var verJson = json[0].version_id;
 
+			var addButton = $('<button class="showProductReleasesButton btn btn-info" style="border-radius: 0;">'
+				+ '<i class="fas fa-arrow-left"></i> Return</button>'
+				+ ' <button id="showReleasesModalButton" type="button" class="btn btn-success"' 
+				+ 'data-toggle="modal" data-target="#addReleasesModal"'
+				+ ' data-id="' + idJson + '"' + ' data-ver="' + verJson
+				+ '"><i class=\"fas fa-plus\"></i> Add </button>');
+
+			var hrLine = $('<hr>');
+
+			var title = $('<h4>Releases For ' + dataTitle + '</h4>');
+
 			var table = $('<table></table>').addClass('table table-hover');
-			var addButton = $('<thead><tr><th colspan="4">'
-					+ '<button id="showReleasesModalButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#addReleasesModal"'
-					+ ' data-id="' + idJson + '"' + ' data-ver="' + verJson
-					+ '"> Add </button></th></tr></thead>');
-			var subTitle = $('<thead><tr><th colspan="6">Releases<br>' + idJson
-					+ '::' + verJson + '</th></tr></thead>');
+
+			/*var subTitle = $('<thead><tr><th colspan="6">Releases<br>' + idJson
+					+ '::' + verJson + '</th></tr></thead>');*/
+
 			var thead = $('<thead><tr>' + '<th>Name</th>'
 					+ '<th>Releases Date Time</th>'
 					+ '<th>Announcement Date Time</th>'
 					+ '<th>Description</th>' + '<th>Email</th>'
 					+ '<th>Comment</th>' + '</tr></thead>');
 
-			var tbody = $('<tbody></tbody');
+			var tbody = $('<tbody></tbody>');
 			for (i = 0; i < json.length; i++) {
-				//console.log("JSON Releases: ", json[i]);
 				var row = $('<tr>' + '<td>' + json[i].name + '</td>' + '<td>'
 						+ json[i].release_date_time + '</td>' + '<td>'
 						+ json[i].announcement_date_time + '</td>' + '<td>'
@@ -543,11 +556,13 @@ function displayReleasesList(json, id, ver) {
 				tbody.append(row);
 			}
 
-			table.append(subTitle);
-			table.append(addButton);
 			table.append(thead);
 			table.append(tbody);
 
+
+			$('#releasesTable').append(addButton);
+			$('#releasesTable').append(hrLine);
+			$('#releasesTable').append(title);
 			$('#releasesTable').append(table);
 		}
 	} else {
@@ -567,7 +582,7 @@ function displayReleasesList(json, id, ver) {
 
 function showReleasesTable() {
 	$("#releasesTable").removeClass("hidden");
-	$("#showProductReleasesButton").removeClass("hidden");
+	$(".showProductReleasesButton").removeClass("hidden");
 	$("#searchDiv").addClass("hidden");
 	$("#filterDiv").addClass("hidden");
 	$("#productReleasesTable").addClass("hidden");

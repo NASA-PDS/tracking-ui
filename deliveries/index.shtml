@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!-- InstanceBegin template="../Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>PDS: Tracking Service</title>
+<!-- InstanceEndEditable -->
+
+<!--#include virtual="/include/includes.html" -->
+
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<!-- InstanceParam name="menu_section" type="text" value="tools" -->
+<!-- InstanceParam name="menu_item" type="text" value="tools_data_dictionary_lookup" -->
+<!-- InstanceParam name="left_sidebar" type="boolean" value="true" -->
+<!-- InstanceParam name="standard_sidebar" type="boolean" value="true" -->
+<!-- InstanceParam name="standard_page_content" type="boolean" value="true" -->
+<!-- InstanceParam name="custom_page_class" type="text" value="" -->
+
+<!--#include virtual="deliveriesTrackingImports.html" -->
+</head>
+
+<body class="sidebar  menu_tools menu_item_tools_data_dictionary_lookup ">
+  <!--[if IE]>
+  <div id="IE">
+  <![endif]-->
+
+  <!--#include virtual="/include/header.html" -->
+  <!--#include virtual="/include/main_menu.html" -->
+
+  <div id="submenu">
+    <!--#include virtual="/include/tools_menu.html" -->
+    <div class="clear">
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <!--#include virtual="/include/standard_sidebar.html" -->
+    <!-- InstanceBeginEditable name="leftSidebar" -->
+    <!-- InstanceEndEditable -->
+  </div>
+
+  <!-- Main content -->
+  <div id="content">
+    <div class="linkTitle">
+      <a href="../"><h4 class="titleLinkPast"><i class="fas fa-home"></i> Tracking&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent"><i class="fas fa-archive"></i> Deliveries</h1>
+    </div>
+    <div class="tw-bs">
+      <div id="referenceFilterPanel" class="panel panel-default panelNoRadius">
+        <div class="panel-body">
+          <form class="form-inline">
+              <div>
+                <h4>Reference Filter:</h4>
+              </div>
+              <div></div>
+            <div class="form-group">
+              <label for="instrumentSelect">Instruments:</label>
+              <select id="instrumentSelect" class="form-control selectNoRadius">
+                <option>All</option>
+              </select>
+            </div>
+            &nbsp;
+            <div class="form-group">
+              <label for="investigationSelect">Investigations:</label>
+              <select id="investigationSelect" class="form-control selectNoRadius">
+                <option>All</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <button class="btn btn-success" 
+        style="border-radius:0;" 
+        id="addDeliveryToServiceWithoutSelectionButton"
+        data-toggle="modal"
+        data-target="#addDeliveryModal"
+      >
+        <i class="fa fa-plus"></i>
+        Add
+      </button>
+
+      <button class="btn btn-info hidden" style="border-radius:0;" id="showTrackingServiceButton">
+        <i class="fa fa-arrow-left"></i>
+        Return
+      </button>
+      <button class="btn btn-success hidden" 
+        style="border-radius:0;" 
+        id="addDeliveryToServiceButton"
+        data-toggle="modal"
+        data-target="#addDeliveryModal"
+      >
+        <i class="fas fa-plus"></i>
+        Add
+      </button>
+      <hr>
+
+      <div id="trackingServiceTable">
+      </div>
+
+      <div id="deliveryTable" class="hidden">
+      </div>
+
+      <!-- Add Delivery Modal -->
+			<div class="modal fade" id="addDeliveryModal" tabindex="-1"
+      role="dialog" aria-labelledby="addDeliveryModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button id="closeAddDeliveryModalButton" type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span class="innerClose" aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="addDeliveryModalLabel">Add
+              Delivery</h4>
+          </div>
+          <div class="modal-body">
+            <div id="addDeliveryFormContainer">
+              <form id="addDeliveryForm" autocomplete="off">
+                <div id="addDeliveryLogicalIdentifierFormGroup"
+                  class="form-group">
+                  <label for="addDeliveryLogicalIdentifierInput">Logical
+                    Identifier</label> <input type="text" class="form-control"
+                    id="addDeliveryLogicalIdentifierInput"
+                    name="Log_Identifier" readonly="true" />
+                </div>
+                <div id="addDeliveryVersionFormGroup" class="form-group">
+                  <label for="addDeliveryVersionInput">Version</label> <input
+                    type="text" class="form-control" id="addDeliveryVersionInput"
+                    name="Version" readonly="true" />
+                </div>
+                <div id="addDeliveryNameInputFormGroup" class="form-group">
+                  <label for="addDeliveryNameInput">Name</label> <input
+                    type="text" class="form-control" id="addDeliveryNameInput"
+                    name="Name" /> <span id="addDeliveryNameInputHelpBlock"
+                    class="help-block hidden">* Required.(it can have no
+                    more than 255 characters and be only one word.)</span>
+                </div>
+                <div id="addDeliveryStartDateInputFormGroup" class="form-group">
+                  <label for="addDeliveryStartDateInput">Start Time
+                    (yyyy-MM-dd HH:mm:ss)</label> <input type="text" class="form-control"
+                    id="addDeliveryStartDateInput" name="Start_Time" /> <span
+                    id="addDeliveryStartDateInputHelpBlock" class="help-block hidden">*
+                    Required.</span>
+                </div>
+                <div id="addDeliveryStopDateInputFormGroup" class="form-group">
+                  <label for="addDeliveryStopDateInput">Stop Time
+                    (yyyy-MM-dd HH:mm:ss)</label> <input type="text"
+                    class="form-control" id="addDeliveryStopDateInput"
+                    name="Stop_Time" /> <span
+                    id="addDeliveryStopDateInputHelpBlock"
+                    class="help-block hidden">* Required.</span>
+                </div>
+                
+                <div id="addDeliverySourceInputFormGroup" class="form-group">
+                  <label for="addDeliverySourceInput">Source</label> <input
+                    type="text" class="form-control" id="addDeliverySourceInput"
+                    name="Source" /> <span id="addDeliverySourceInputHelpBlock"
+                    class="help-block hidden">* Required.(it can have no
+                    more than 255 characters.)</span>
+                </div>
+                <div id="addDeliveryTargetInputFormGroup" class="form-group">
+                  <label for="addAStatusTargetInput">Target</label> <input
+                    type="text" class="form-control" id="addDeliveryTargetInput"
+                    name="Target" /> <span
+                    id="addDeliveryTargetInputHelpBlock"
+                    class="help-block hidden">** Required.(it can have no
+                    more than 255 characters.)</span>
+                </div>
+                <div id="addDeliveryDueDateInputFormGroup" class="form-group">
+                  <label for="addDeliveryDueDateInput">Due Date
+                    (yyyy-MM-dd)</label> <input type="text" class="form-control"
+                    id="addDeliveryDueDateInput" name="Due_Date" /> <span
+                    id="addDeliveryDueDateInputHelpBlock" class="help-block hidden">*
+                    Required.</span>
+                </div>
+
+              </form>
+            </div>
+
+            <div id="addDeliveryFormCompleteMessage"></div>
+          </div>
+          <div class="modal-footer">
+            <div id="addDeliveryFormButtons">
+              <button id="cancelAddDeliveryFormButton" type="button" class="btn btn-default"
+                data-dismiss="modal">Cancel</button>
+              <button id="addDeliveryModalAddButton" type="button"
+                class="btn btn-success">Add</button>
+            </div>
+
+            <div id="addDeliveryLoadingIcon" class="hidden">
+              <img src="images/ajax-loader.gif" alt="Loading" />
+            </div>
+
+            <div id="addDeliveryFormCompleteButtons" class="hidden">
+              <button type="button" class="btn btn-default"
+                data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End add delivery Modal -->
+    </div><!--End tw-bs -->
+  </div><!--End main content -->
+
+
+  <!--#include virtual="/include/footer.html" -->
+
+  <!--[if IE]>
+  </div>
+  <![endif]-->
+</body>
+<!-- InstanceEnd -->
+</html>

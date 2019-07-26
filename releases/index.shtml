@@ -44,16 +44,15 @@
 	<!-- Main content -->
 	<div id="content">
 		<div class="linkTitle">
-			<a href="../"><h4 class="titleLinkPast">Tracking
-					Service&nbsp;/</h4></a>&nbsp;
-			<h1 class="titleLinkCurrent">Releases Tracking</h1>
+			<a href="../"><h4 class="titleLinkPast"><i class="fas fa-home"></i> Tracking&nbsp;/</h4></a>&nbsp;
+			<h1 class="titleLinkCurrent"><i class="fas fa-paper-plane"></i> Releases</h1>
 		</div>
 		<div class="tw-bs">
 			<div id="filterDiv" class="panel panel-default panelNoRadius">
 				<div class="panel-body">
 					<form class="form-inline">
 						<div>
-							<h4>References Filter:</h4>
+							<h4>Reference Filter:</h4>
 						</div>
 						<div></div>
 						<div class="form-group">
@@ -100,10 +99,6 @@
 			<div id="productReleasesTable"></div>
 
 			<div id="releasesTable" class="hidden"></div>
-
-			<button class="btn btn-success hidden"
-				style="border-radius: 0; float: right;"
-				id="showProductReleasesButton">Return</button>
 
 			<!-- Add Releases Modal -->
 			<div class="modal fade" id="addReleasesModal" tabindex="-1"

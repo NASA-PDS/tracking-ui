@@ -127,10 +127,14 @@
 }
 
 .tw-bs .btn-success{
-	background-image: #5cb85;
+	background-image: #5cb85c;
 	background: #5cb85c;
 }
 
+.btn.updateDoiLink{
+	padding: 0;
+    font-size: inherit;
+}
 /**Override SSI styles**/
 .formp{
 	max-width:none;

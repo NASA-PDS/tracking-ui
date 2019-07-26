@@ -670,14 +670,14 @@ function displayDoiList(json){
                         '<td>' + json[i].comment+ '</td>' +
                         '<td>' + json[i].electronic_mail_address + '</td>' +
                         '<td>' + json[i].logical_identifier + '</td>' +
-                        '<td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateDoiModal"' 
+                        '<td><button type="button" class="btn btn-link updateDoiLink" data-toggle="modal" data-target="#updateDoiModal"' 
                         + ' data-id="' + json[i].logical_identifier + '"'
                         + ' data-ver="' + json[i].version_id + '"'
                         + ' data-url="' + json[i].site_url + '"'
                         + ' data-email="' + json[i].electronic_mail_address + '"'
                         + ' data-comment="' + json[i].comment + '"'
                         + ' data-title="Update DOI ' + json[i].doi + '"'
-                        + '">Update</button></td>' +
+                        + '"><i class="fas fa-edit"></i> Update</button></td>' +
                         '</tr>');
             tbody.append(row);
             createUpdateModalListener();

@@ -44,20 +44,13 @@
   <!-- Main content -->
   <div id="content">
     <div class="linkTitle">
-      <a href="../"><h4 class="titleLinkPast">Tracking Service&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent">Digital Object Identifier</h1>
+      <a href="../"><h4 class="titleLinkPast"><i class="fas fa-home"></i> Tracking&nbsp;/</h4></a>&nbsp;<h1 class="titleLinkCurrent"><i class="fas fa-barcode"></i> Digital Object Identifier</h1>
     </div>
     <div class="tw-bs">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDoiModal"><i class="fas fa-plus"></i> Add</button>
+      <hr>
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <form class="form-inline">
-            <div class="form-group">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDoiModal">Add DOI</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
+      <h4>Digital Object Identifiers</h4>
       <div id="doiTable">
       </div>
 

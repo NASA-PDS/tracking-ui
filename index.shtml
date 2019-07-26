@@ -52,7 +52,7 @@
     <div class="menuThumbnailContainer">
 
       <div class="menuItem">
-        <a class="menuItemThumbnailLink">
+        <a href="deliveries" class="menuItemThumbnailLink">
           <div class="thumbnail menuThumbnail">
             <div class="menuItemImage">
               <i class="fas fa-archive menuItemImageItem"></i>
@@ -66,7 +66,7 @@
       </div>
 
       <div class="menuItem">
-        <a href="releases/" class="menuItemThumbnailLink">
+        <a href="releases" class="menuItemThumbnailLink">
           <div class="thumbnail menuThumbnail">
             <div class="menuItemImage">
               <i class="fas fa-paper-plane menuItemImageItem"></i>
@@ -80,7 +80,7 @@
       </div>
 
       <div class="menuItem">
-        <a href="statusTracking/" class="menuItemThumbnailLink">
+        <a href="status" class="menuItemThumbnailLink">
           <div class="thumbnail menuThumbnail">
             <div class="menuItemImage">
               <i class="fas fa-tablets menuItemImageItem"></i>
@@ -94,7 +94,7 @@
       </div>
 
       <div class="menuItem">
-        <a href="doiTracking/" class="menuItemThumbnailLink">
+        <a href="doi/" class="menuItemThumbnailLink">
           <div class="thumbnail menuThumbnail">
             <div class="menuItemImage">
               <i class="fas fa-barcode menuItemImageItem"></i>
