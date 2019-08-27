@@ -47,6 +47,30 @@
 			<a href="../"><h4 class="titleLinkPast"><i class="fas fa-home"></i> Tracking&nbsp;/</h4></a>&nbsp;
 			<h1 class="titleLinkCurrent"><i class="fas fa-paper-plane"></i> Releases</h1>
 		</div>
+
+		<div>
+			<p>This PDS Release Tracking shows important dates associated with all PDS data releases in the current Calendar Year. The table below includes the following fields:
+			</p>
+			<ul>
+				<li><b>Anticipated Release Date</b>: The date when data provider and PDS expect/estimate to make the data publicly available.</li>
+				<br/>
+				<li><b>Actual Release Date</b>: The date when the data was confirmed/verified to be online and publicly accessible through the given link.</li>
+				<br/>
+				<li><b>Link</b>: The link to a web page that lists the data and provides additional links to data descriptions and download pages.</li>
+				<br/>
+				<li><b>Release Interval</b>: The approximate length of time between regular data releases. Data without a regular release schedule or single data releases are labeled as &quot;Irregular&quot;.</li>
+				<br/>
+			</ul>
+
+			<p>All columns in the table can be sorted by clicking on the column heading. (To sort by multiple columns, hold the Shift key down while clicking on the column headings.) The search box at the top of the table also allows filtering based on keywords.</p>
+
+			<p><b>Important: Anticipated release dates are tentative and are subject to change depending on successful delivery and review of the data. Only the actual release dates in this table should be used for assessing the suitability of PDS data for proposed work under NASA ROSES programs.</b></p>
+
+			<p>An Excel version of the PDS Data Release Tracking can be downloaded here: <a href="https://pds.jpl.nasa.gov/datasearch/subscription-service/PDS_Data_Release_Calendar_20190820_v0.xlsx">PDS Data Release Tracking</a></p>
+
+			<p>Due dates for 2019 ROSES program elements are available here: <a href="http://solicitation.nasaprs.com/ROSES2019table2" target="_blank">ROSES 2019</a></p>
+		</div>
+
 		<div class="tw-bs">
 			<div id="filterDiv" class="panel panel-default panelNoRadius">
 				<div class="panel-body">
