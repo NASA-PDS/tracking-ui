@@ -83,7 +83,7 @@ function displayProductList(json) {
 		if (json.length > 0) {
 			var tableTitle = $('<h4>Products With Releases</h4>');
 			var table = $('<table></table>').addClass('table table-hover');
-			var thead = $('<thead><tr><th>Title<br/><span style="font-weight:normal">Logical Identifier::version</span</th><th>Release Name</th><th>Investigation</th><th>Instrument</th><th>Node</th></tr></thead>');
+			var thead = $('<thead><tr><th>Title<br/><span style="font-weight:normal">Logical Identifier::version</span</th><th>Release Name</th><th>Investigation</th><th>Instrument</th><th>Node</th><th>Release Interval</th><th>Anticipated Release Date</th><th>Actual Release Date</th></tr></thead>');
 			var tbody = $('<tbody></tbody');
 			for (i = 0; i < json.length; i++) {
 
@@ -112,7 +112,10 @@ function displayProductList(json) {
 						+ '::' + ver + '</td>' + releasesLink + '<td>'
 						+ json[i].investigation[0].title + '</td>' + '<td>'
 						+ json[i].instrument[0].title + '</td>' + '<td>'
-						+ json[i].node[0].title + '</td>' + '</tr>');
+						+ json[i].node[0].title + '</td>' + '<td>'
+						+ '' + '</td>' + '<td>'
+						+ '' + '</td>' + '<td>'
+						+ '' + '</td>' + '</tr>');
 				tbody.append(row);
 			}
 
@@ -516,7 +519,7 @@ function showAddReleasesCompletedMessage() {
 function displayReleasesList(json) {
 	$("#releasesTable").empty();
 	showReleasesTable();
-	
+
 	json = json["Releases"];
 	if (json) {
 		if (json.length > 0) {
@@ -525,7 +528,7 @@ function displayReleasesList(json) {
 
 			var addButton = $('<button class="showProductReleasesButton btn btn-info" style="border-radius: 0;">'
 				+ '<i class="fas fa-arrow-left"></i> Return</button>'
-				+ ' <button id="showReleasesModalButton" type="button" class="btn btn-success"' 
+				+ ' <button id="showReleasesModalButton" type="button" class="btn btn-success"'
 				+ 'data-toggle="modal" data-target="#addReleasesModal"'
 				+ ' data-id="' + idJson + '"' + ' data-ver="' + verJson
 				+ '"><i class=\"fas fa-plus\"></i> Add </button>');
@@ -571,9 +574,9 @@ function displayReleasesList(json) {
 		 * table-hover'); var subTitle = $('<thead><tr><th colspan="6">Releases<br>' +
 		 * id + '::' + ver + '</th></tr></thead>') var tbody = $('<tbody><tr><td>Cancelled
 		 * Add Releases</td></tr></tbody');
-		 * 
+		 *
 		 * tableNonReleases.append(subTitle); tableNonReleases.append(tbody);
-		 * 
+		 *
 		 * $('#releasesTable').append(tableNonReleases);
 		 */
 		setUpProductsList();
@@ -595,7 +598,7 @@ function isValidEmail(input) {
 function isValidDateTime(input) {
 	// yyyy-mm-dd hh:mm:ss
 	var stamp = input.split(" ");
-	
+
 	var dateFormat = /^\d{4}-\d{2}-\d{2}$/.test(stamp[0]);
 	var validDate = !/Invalid|NaN/.test(new Date(stamp[0]).toString());
 	var validTime = /^(?:[01]?\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(stamp[1]);
@@ -614,7 +617,7 @@ function getProdResults() {
 	$("#productReleasesTable tr").filter(function() {
 		$(this).toggle($(this).children('td').first().text().toLowerCase().indexOf(text) > -1)
 	});
-	
+
 }
 // References filter
 function setUpFilters(data) {
