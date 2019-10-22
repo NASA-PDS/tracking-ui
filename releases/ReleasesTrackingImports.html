@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstraptw-bs.min.css">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="../lib/fontAwesome/css/all.min.css">
-  
+
   <link rel="stylesheet" type="text/css" href="../jquerydatetimepicker/jquery.datetimepicker.css"/>
   <link rel="stylesheet" type="text/css" href="../jquerydatetimepicker/jquery.datetimepicker.min.css"/>
-  
+
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../jqueryui/jquery-ui.min.js"></script>
 
@@ -38,3 +38,46 @@
   <!--CSS -->
   <link rel="stylesheet" href="css/ReleasesTracking.css"/>
 
+  <!-- DATA RELEASE CALENDAR FILES -->
+  <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+  <script type="text/javascript" charset="utf8" src="js/datatables.min.js"></script>
+
+  <script>
+    $(document).ready( function () {
+      $('#drCalendar').DataTable( {
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+        , "order": [[0, "asc"], [1, "asc"], [4, "asc"]]
+        , "pageLength": -1
+        , "pagingType": "full_numbers"
+      });
+    });
+  </script>
+  <style>
+    #drCalendar_wrapper.dataTables_wrapper { width: 53em; }
+    #drCalendar_filter input {
+      outline: -webkit-focus-ring-color auto 1px;
+      outline-offset: -3px;
+    }
+    #drCalendar_filter input:focus {
+      outline-width: 3px;
+      outline-offset: -2px;
+    }
+    #drCalendar * { vertical-align: middle; text-align: center; }
+
+    #drCalendar .even, #drCalendar .even td { background-color: #ffffff; }
+    #drCalendar .even:hover,
+    #drCalendar .even:hover td,
+    #drCalendar.dataTable.display tbody tr:hover,
+    #drCalendar.dataTable.display tbody tr:hover > [class^="sorting"] {
+      background-color: #e7e7e7;
+    }
+    #drCalendar.dataTable.display tbody tr.odd > .sorting_1 { background-color: #ecf1f3; }
+    #drCalendar.dataTable.display tbody tr.even > .sorting_1 { background-color: #f5f8fa; }
+
+    #drCalendar.dataTable thead .sorting { background-image: url(/images/sort_both.png); }
+    #drCalendar.dataTable thead .sorting_asc { background-image: url(/images/sort_asc.png); }
+    #drCalendar.dataTable thead .sorting_desc { background-image: url(/images/sort_desc.png); }
+
+    #drCalendar_wrapper.dataTables_wrapper .dataTables_paginate { padding-top: .5em; }
+    #drCalendar_wrapper.dataTables_wrapper .dataTables_paginate .paginate_button { padding: .15em .5em; }
+  </style>
